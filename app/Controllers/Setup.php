@@ -11,7 +11,8 @@ class Setup extends BaseController
   private $setup;
   
   public function __construct(){
-    $this->setup = json_decode(file_get_contents(base_url("writable/setup.json") ));
+    $this->config = config('Auth');
+    $this->setup = json_decode(file_get_contents(WRITEPATH."cache/setup.json"));
     if (empty($this->setup) || $this->setup->installed) {
       return redirect()->to(route_to("home"));
     }
@@ -27,8 +28,12 @@ class Setup extends BaseController
 	  return $this->setup->installed;
 	}
 	
+	public function progress(){
+	  return $this->response->setJson($this->setup);
+	}
+	
 	private function saveProcess(){
-	  #file_put_contents(base_url("writable/setup.json"), json_encode($this->setup, JSON_PRETTY_PRINT));
+	  file_put_contents(WRITEPATH."cache/setup.json", json_encode($this->setup, JSON_PRETTY_PRINT));
 	}
 	
 	
@@ -39,16 +44,16 @@ class Setup extends BaseController
 	  return $this->response->setJSON($this->startProcess());
 	}
 	
-	public function startProcess(){
-	  $migrate = $this->migrate();
-		if ($migrate) {
-		  $this->setupAuthClasses();
-		  if($this->createPermissions()){
-		    if ($this->createUserGroups()) {
-		      #Give Admin permissions
+	public function setupPermissions(){
+	  if ($this->setup->setupPermissions)
+	    return true;
+	  #Give Admin permissions
 		      foreach ($this->setup->permissions as $group) {
   		      if (!$this->authorize->addPermissionToGroup($group->permission, 'admin')) {
-  		        return ["Failed to setup admin privileges."];
+  		        return [
+      	        "status" => "installed", 
+      	        "error" => "Failed to setup admin privileges.", 
+      	      ];
   		      }
 		      }
 		      $this->authorize->addPermissionToGroup("app.manage", 'manager');
@@ -57,16 +62,40 @@ class Setup extends BaseController
 		      $this->authorize->addPermissionToGroup("app.clothes.dispense", 'receptionist');
 		      $this->authorize->addPermissionToGroup("app.clothes.wash", 'washer');
 		      $this->authorize->addPermissionToGroup("app.clothes.iron", 'ironer');
-		      return ["done"];
-		    }
-		    return ["Failed to setup user roles."];
-		  }
-	    return ["Failed to setup app permissions."];
-		}
+		      $this->setup->setupPermissions = true;
+		      $this->saveProcess();
+		      return true;
 	} 
 	
-	public function reInstall(){
-	  # Rollback then
+	public function startProcess(){
+	  $migrate = $this->migrate();
+		if ($migrate) {
+		  $this->setupAuthClasses();
+		  if($this->createPermissions()){
+		    if ($this->createUserGroups()) {
+		      $s_perms = $this->setupPermissions();
+		      if($s_perms !== true)
+		        return $s_perms;
+		      $this->setup->installed = true;
+		      $this->saveProcess();
+		      return [
+		        "status" => "installed"
+		      ];
+		    }
+		    return [
+		        "status" => false, 
+		        "error" => "Failed to setup user roles.", 
+		      ];
+		  }
+	    return [
+		        "status" => "installed", 
+		        "error" => "Failed to setup app permissions.", 
+		      ];
+		}
+	}
+	
+	private function resetProgress(){
+	  #Rollback then
 	  foreach ($this->setup as $key => $value) {
 	    if ($key !== "groups" && $key !== "permissions") {
 	      $this->setup->$key = false;
@@ -76,11 +105,25 @@ class Setup extends BaseController
     	  }
 	    } 
 	  }
+	  $this->saveProcess();
+	  return true ;
+	} 
+	
+	public function reInstall(){
+	  $this->setupAuthClasses();
+	  if (!$this->authenticate->check()) {
+	    return $this->response->setJson(["errors" =>["user isn't logged in."]]);
+	  }
+	  if(!$this->authorize->inGroup("admin", $this->authenticate->user()->id) ){
+	    return $this->response->setJson(["errors" =>["user does not have admin privileges"]]);
+	  }
+	  
+	  $this->resetProgress();
 	  
 	  if ($this->rollbackMigrate()) {
 	    return $this->response->setJson($this->startProcess());
 	  }
-	  return $this->response->setJson(["failed"]);
+	  return $this->response->setJson(["errors" =>["failed"]]);
 	}
 	
 	private function migrate(){
@@ -103,11 +146,12 @@ class Setup extends BaseController
     } 
 	}
 	
-	private function rollbackMigrate(){
+	public function rollbackMigrate(){
 	  $migrate = \Config\Services::migrations();
     try
     {
       if ($migrate->regress(0)) {
+        $this->resetProgress();
         return true;
       } else {
        return "Unknown error occurred";
@@ -124,10 +168,6 @@ class Setup extends BaseController
 	    return true;
 	    
 	  $permissions = $this->setup->permissions;
-	  
-	  /*if (isset($_SESSION['setup_create_permissions'])) {
-	    $permissions = $_SESSION['setup_create_permissions'];
-	  }*/
 	  
 	  $errors = 0;
 	  
@@ -188,20 +228,23 @@ class Setup extends BaseController
 	
 	public function createAdmin()
 	{
+	  if($this->setup->isAdminCreated === true)
+	    return $this->response->setJson([
+	      "errors" => ["Admin has been already created."], 
+	      'redirect' => route_to('login') 
+	    ]);
 		// Check if registration is allowed
-		if (! $this->config->allowRegistration)
-		{
-			return redirect()->back()->withInput()->with('error', lang('Auth.registerDisabled'));
-		}
+	
 
 		$users = model('UserModel');
 
 		// Validate here first, since some things,
 		// like the password, can only be validated properly here.
 		$rules = [
+			'name'	 	=> 'required',
 			'username'  	=> 'required|alpha_numeric_space|min_length[3]|is_unique[users.username]',
 			'email'			=> 'required|valid_email|is_unique[users.email]',
-			'password'	 	=> 'required|strong_password',
+			'password'	 	=> 'required',
 			'pass_confirm' 	=> 'required|matches[password]',
 		];
 
@@ -225,8 +268,7 @@ class Setup extends BaseController
 			return $this->response->setJson(['errors' => $users->errors()]);
 		}
 		
-		$this->setup->createAdmin = true;
-		$this->setup->installed = true;
+		$this->setup->isAdminCreated = true;
 		$this->saveProcess();
 		// Success!
 		return $this->response->setJson(['success' => lang('Auth.registerSuccess'), 'redirect' => route_to('login')]);

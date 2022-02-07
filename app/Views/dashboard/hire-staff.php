@@ -346,6 +346,11 @@
 																<div class="text-muted fw-bold fs-3">Complete Registration!</div>
 															</div>
 															<!--end::Heading-->
+															<div v-if="errors" class="p-4 mb-4 alert alert-danger">
+															  <ul>
+															    <li v-for="error in errors">{{error}}</li>
+															  </ul>
+															</div>
 															<!--begin::Section-->
 															<h4 class="fw-bolder mb-3">Personal info:</h4>
 															<div class="d-flex align-items-center justify-content-center text-gray-600 fw-bold lh-lg mb-8">

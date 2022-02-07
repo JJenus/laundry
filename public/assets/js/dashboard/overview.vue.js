@@ -304,7 +304,7 @@ let VueApp = new Vue({
     }, 
     loadChatData(){
       $.ajax({
-        url: "http://localhost:8080/customers/lastmonths", 
+        url: base_url+"/customers/lastmonths", 
         method: "GET",
         success: (res)=>{
           console.log(res);
@@ -324,7 +324,7 @@ let VueApp = new Vue({
     }, 
     loadStats(stat, date_range){
       $.ajax({
-        url: "http://localhost:8080/clothes/stats/"+stat, 
+        url: base_url+"/clothes/stats/"+stat, 
         method: "GET",
         data: {date:date_range}, 
         success: (res)=>{

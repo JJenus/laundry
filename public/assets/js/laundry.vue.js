@@ -46,7 +46,7 @@ Vue.component("search-card", {
       console.log(action);
       $("#activate-btn"+this.clothe.id)[0].setAttribute("data-kt-indicator", "on");
       $.ajax({
-        url: `http://localhost:8080/clothes/${this.clothe.id}/${action}`, 
+        url: `${base_url}/clothes/${this.clothe.id}/${action}`, 
         method: "GET",
         success: (res)=>{
           console.log(res);
@@ -151,7 +151,7 @@ let app = new Vue({
     
     getUser(){
       $.ajax({
-        url: `http://localhost:8080/app/user`, 
+        url: `${base_url}/app/user`, 
         method: "GET",
         success: (res)=>{
           if (res.status) {
@@ -167,7 +167,7 @@ let app = new Vue({
     searchDB(limit, offset){
       $("#form-search-btn").attr("data-kt-indicator", "on");
       $.ajax({
-        url: "http://localhost:8080/search/clothes", 
+        url: `${base_url}/search/clothes`, 
         method: "POST",
         data: {"limit":limit, "offset":offset, "q":this.inputs.search}, 
         success: (res)=>{

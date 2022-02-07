@@ -13,19 +13,19 @@ var App = new Vue({
       city: null, 
       bank: null, accountname:null, 
       accountnumber: null, 
-      photo: 'http://localhost:8080/assets/media/stock/900x600/3.jpg'
+      photo: base_url+'/assets/media/stock/900x600/3.jpg'
     }, 
     error: {
       username: null, 
       email: null, 
     }, 
+    errors: null, 
     bgImage: null
   },
   mounted(){
     console.log("hello");
     this.bgImage = `background-image:url('${this.form.photo}')`; 
     this.getId();
-    
   }, 
   methods: {
     readURL() {
@@ -41,18 +41,27 @@ var App = new Vue({
     }, 
     
     hire(){
-      console.log('hired');
       var form = new FormData($('#kt_stepper_form')[0]);
-      console.log(form);
       $("#btn-kt-hire").attr("data-kt-indicator", "on");
       $.ajax({
         processData: false,
         contentType: false,
-        url: "http://localhost:8080/register", 
+        url: base_url+"/register", 
         method: "POST",
         data: form, 
         success: (res)=>{
-          console.log(res);
+          //console.log(res);
+          this.error = null;
+          if(res.errors){
+            res.errors = [];
+            for(let i in res.errors)
+              this.errors.push(res.errors[i]);
+          } else{
+            notify("success", "User successfully registered");
+            setTimeout(function() {
+              $('#kt_stepper_form')[0].reset();
+            }, 1000);
+          } 
         },
         error: (err)=>{
           console.log(err);
@@ -65,11 +74,11 @@ var App = new Vue({
     getId(){
       $("#btn-load-more").attr("data-kt-indicator", "on");
       $.ajax({
-        url: "http://localhost:8080/app/hire/generateId", 
+        url: base_url+"/app/hire/generateId", 
         method: "GET",
         data: {}, 
         success: (res)=>{
-          console.log(res);
+          //console.log(res);
           this.form.username = res.id;
         },
         error: (err)=>{
@@ -86,11 +95,11 @@ var App = new Vue({
         
         $("#btn-load-more").attr("data-kt-indicator", "on");
         $.ajax({
-          url: "http://localhost:8080/app/hire/checkAvailability", 
+          url: base_url+"/app/hire/checkAvailability", 
           method: "GET",
           data: {id: ((login=="email") ? this.form.email: this.form.username), field: login}, 
           success: (res)=>{
-            console.log(res);
+            //console.log(res);
             if (!res.id) {
               
               if(login == "email") 

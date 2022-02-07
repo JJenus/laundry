@@ -46,6 +46,7 @@ $routes->group("app", ['filter' => 'login:admin,manager,receptionist,ironer,wash
     $dashboard->addRedirect("/", "app/dashboard/overview");
     $dashboard->get("(:any)", "App::dashboard/$1");
   });
+  $app->get("(:any)", "App::view/$1");
 });
 
 $routes->group("staffs", ['filter' => 'login'], function($route){
@@ -116,10 +117,11 @@ $routes->group("clothes", ['filter' => 'login'], function($route){
 
 $routes->group("setup", function($route){
   $route->get("/", "Setup::index");
-  $route->get("install", "Setup::install");
-  $route->get("reinstall", "Setup::reInstall");
+  $route->post("install", "Setup::install");
+  $route->post("reinstall", "Setup::reInstall");
   $route->post("create-admin", "Setup::createAdmin");
   $route->get("progress", "Setup::progress");
+  $route->get("rollback", "Setup::rollbackMigrate");
 });
 
 $routes->group('',function($routes) {

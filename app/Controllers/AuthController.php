@@ -43,17 +43,17 @@ class AuthController extends Controller
 	 */
 	public function login()
 	{
+	  $setup = json_decode(file_get_contents(WRITEPATH."cache/setup.json"));
+		if(!$setup->isAdminCreated || !$setup->installed)
+		  return redirect()->route("setup");
 		// No need to show a login form if the user
 		// is already logged in.
-		if ($this->auth->check())
-		{
+		if ($this->auth->check()){
 			#$redirectURL = session('redirect_url') ?? '/';
 			$redirectURL = '/';
 			unset($_SESSION['redirect_url']);
-
 			return redirect()->to($redirectURL);
 		}
-
         // Set a return URL if none is specified
         $_SESSION['redirect_url'] = session('redirect_url') ?? previous_url() ?? '/';
 

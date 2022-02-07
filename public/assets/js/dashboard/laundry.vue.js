@@ -516,7 +516,7 @@ var App = new Vue({
     loadStats(stat, selected){
       console.log(stat+': '+selected);
       $.ajax({
-        url: "http://localhost:8080/clothes/stats/"+stat, 
+        url: base_url+"/clothes/stats/"+stat, 
         method: "GET",
         data: {date:selected}, 
         success: (res)=>{
@@ -537,7 +537,7 @@ var App = new Vue({
     
     searchDB(limit, offset){
       $.ajax({
-        url: "http://localhost:8080/search/customers", 
+        url: base_url+"/search/customers", 
         method: "POST",
         data: {"limit":limit, "offset":offset, "q":this.inputs.search}, 
         success: (res)=>{
@@ -644,7 +644,7 @@ var App = new Vue({
     
     getCategories(){
       $.ajax({
-        url: "http://localhost:8080/clothes/categories", 
+        url: base_url+"/clothes/categories", 
         method: "GET",
         data: {"stats":true}, 
         success: (res)=>{

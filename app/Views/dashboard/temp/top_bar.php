@@ -33,7 +33,7 @@
 							<div class="d-flex align-items-center">
 
 								<!--begin::Message-->
-								<button class="btn btn-icon btn-sm btn-active-bg-accent ms-1 ms-lg-6" data-bs-toggle="modal" data-bs-target="#kt_inbox_compose">
+								<button class="btn d-none btn-icon btn-sm btn-active-bg-accent ms-1 ms-lg-6" data-bs-toggle="modal" data-bs-target="#kt_inbox_compose">
 									<!--begin::Svg Icon | path: icons/stockholm/Communication/Chat6.svg-->
 									<span class="svg-icon svg-icon-1 svg-icon-dark">
 										<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -115,7 +115,7 @@
 								</div>
 								<!--end::User-->
 								<!--begin::Notifications-->
-								<div class="ms-1 ms-lg-6">
+								<div class="ms-1 d-none ms-lg-6">
 									<!--begin::Dropdown-->
 									<button class="btn btn-icon btn-sm btn-light-danger fw-bolder pulse pulse-danger" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
 										<span class="position-absolute fs-6">3</span>

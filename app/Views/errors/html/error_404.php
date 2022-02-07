@@ -1,84 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>404 Page Not Found</title>
+	<!--begin::Head-->
+	<head>
+		<meta charset="utf-8" />
+		<title>Error | <?=APP_NAME?></title>
+		<meta name="description" content="laundry management software." />
+		<meta name="keywords" content="laundry, laundry software, startup, business" />
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="shortcut icon" href="<?=base_url()?>/assets/media/logos/favicon.ico" />
+		<!--begin::Fonts-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+		<!--end::Fonts-->
+		<!--begin::Global Stylesheets Bundle(used by all pages)-->
+		<link href="<?=base_url()?>/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="<?=base_url()?>/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<!--end::Global Stylesheets Bundle-->
+	</head>
+	<!--end::Head-->
+	<!--begin::Body-->
+	<body id="kt_body" data-sidebar="on" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled sidebar-enabled">
+		<!--begin::Main-->
+		<div class="d-flex flex-column flex-root">
+			<!--begin::Error-->
+			<div class="d-flex flex-column flex-column-fluid position-relative" style="background-color: #EAF9FC;">
+				<!--begin::Background-->
+				<div class="bgi-size-contain bgi-position-x-end bgi-position-y-center bgi-no-repeat position-absolute top-0 start-0 w-100 h-100 d-none d-lg-block" style="background-image: url(<?=base_url()?>/assets/media/svg/illustrations/404.svg);"></div>
+				<div class="bgi-size-contain bgi-position-y-bottom bgi-position-x-end bgi-no-repeat position-absolute top-0 start-0 w-100 h-100 d-lg-none" style="background-image: url(<?=base_url()?>/assets/media/svg/illustrations/phone404.svg);"></div>
+				<!--end::Background-->
+				<!--begin::Content-->
+				<div class="px-10 px-md-20 pt-10 pt-md-14 z-index-1">
+					<a class="fw-bold fs-3x" href="<?=base_url()?>/">
+					  <?=APP_NAME?>
+						<img class="d-none" alt="Logo" src="<?=base_url()?>/assets/media/logos/logo-compact.svg" class="h-75px" />
+					</a>
+				</div>
+				<div class="px-10 px-md-20 py-10 py-md-0 d-flex flex-column justify-content-md-center align-items-start flex-root w-md-700px z-index-1">
+					<p class="display-6 fw-bolder text-gray-800 mb-8">Something went wrong..</p>
+					<p class="fs-6 d-none mb-8">
+					  <?php if (! empty($message) && $message !== '(null)') : ?>
+      				<?= nl2br(esc($message)) ?>
+      			<?php endif ?>
+					</p>
+					<a href="<?=base_url()?>/app/main" class="btn btn-primary fs-6 fw-bolder py-4 px-6 me-auto">Return to main</a>
+				</div>
+				<!--end::Content-->
+			</div>
+			<!--end::Error-->
+		</div>
+		<!--end::Main-->
+		<!--begin::Javascript-->
+		<!--begin::Global Javascript Bundle(used by all pages)-->
+		<script src="<?=base_url()?>/assets/plugins/global/plugins.bundle.js"></script>
+		<script src="<?=base_url()?>/assets/js/scripts.bundle.js"></script>
+		<!--end::Global Javascript Bundle-->
+		<!--end::Javascript-->
+	</body>
+	<!--end::Body-->
 
-	<style>
-		div.logo {
-			height: 200px;
-			width: 155px;
-			display: inline-block;
-			opacity: 0.08;
-			position: absolute;
-			top: 2rem;
-			left: 50%;
-			margin-left: -73px;
-		}
-		body {
-			height: 100%;
-			background: #fafafa;
-			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-			color: #777;
-			font-weight: 300;
-		}
-		h1 {
-			font-weight: lighter;
-			letter-spacing: 0.8;
-			font-size: 3rem;
-			margin-top: 0;
-			margin-bottom: 0;
-			color: #222;
-		}
-		.wrap {
-			max-width: 1024px;
-			margin: 5rem auto;
-			padding: 2rem;
-			background: #fff;
-			text-align: center;
-			border: 1px solid #efefef;
-			border-radius: 0.5rem;
-			position: relative;
-		}
-		pre {
-			white-space: normal;
-			margin-top: 1.5rem;
-		}
-		code {
-			background: #fafafa;
-			border: 1px solid #efefef;
-			padding: 0.5rem 1rem;
-			border-radius: 5px;
-			display: block;
-		}
-		p {
-			margin-top: 1.5rem;
-		}
-		.footer {
-			margin-top: 2rem;
-			border-top: 1px solid #efefef;
-			padding: 1em 2em 0 2em;
-			font-size: 85%;
-			color: #999;
-		}
-		a:active,
-		a:link,
-		a:visited {
-			color: #dd4814;
-		}
-	</style>
-</head>
-<body>
-	<div class="wrap">
-		<h1>404 - File Not Found</h1>
-
-		<p>
-			<?php if (! empty($message) && $message !== '(null)') : ?>
-				<?= nl2br(esc($message)) ?>
-			<?php else : ?>
-				Sorry Jenus! Cannot seem to find the page you were looking for.
-			<?php endif ?>
-		</p>
-	</div>
-</body>
+<!-- Mirrored from preview.keenthemes.com/start/general/error.html by HTTrack Website Copier/3.x [XR&CO'2017], Tue, 11 May 2021 00:33:21 GMT -->
 </html>

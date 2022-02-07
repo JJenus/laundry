@@ -13,7 +13,7 @@ var App = new Vue({
       city: null, 
       bank: null, accountname:null, 
       accountnumber: null, 
-      image_url: 'http://localhost:8080/assets/media/stock/900x600/3.jpg'
+      image_url: base_url+'/assets/media/stock/900x600/3.jpg'
     }, 
     error: {
       username: null, 
@@ -109,7 +109,7 @@ var App = new Vue({
         
         $("#btn-load-more").attr("data-kt-indicator", "on");
         $.ajax({
-          url: "http://localhost:8080/app/hire/checkAvailability", 
+          url: base_url+"/app/hire/checkAvailability", 
           method: "GET",
           data: {id: ((login=="email") ? this.form.email: this.form.username), field: login}, 
           success: (res)=>{

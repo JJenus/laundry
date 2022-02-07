@@ -16,10 +16,10 @@
 				<a href="<?= base_url('app/dashboard') ?>" class="menu-link ps-0 pe-2">Dashboard</a>
 			</li>
 			<li  class="menu-item">
-				<a href="<?= base_url() ?>/about" class="menu-link ps-0 pe-2">About</a>
+				<a href="<?= base_url("app/about") ?>" class="menu-link ps-0 pe-2">About</a>
 			</li>
 			<li class="menu-item">
-				<a  class="menu-link pe-0 pe-2">Help</a>
+				<a href="<?= base_url("app/help") ?>" class="menu-link pe-0 pe-2">Help</a>
 			</li>
 		</ul>
 		<!--end::Nav-->

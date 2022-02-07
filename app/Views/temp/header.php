@@ -14,20 +14,23 @@
 		<script src="<?= base_url() ?>/node_modules/eruda/eruda.js"></script>
 		<script type="text/javascript" charset="utf-8">
 		  eruda.init();
+		  (function () {
+          window.onload = function () {
+            const preloader = document.querySelector('.page-loading');
+            preloader.classList.remove('active');
+            setTimeout(function () {
+              preloader.remove();
+            }, 2000);
+          };
+        })();
 		</script>
 		  
 		<!--begin::Global Stylesheets Bundle(used by all pages)-->
 		<link href="<?= base_url() ?>/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="<?= base_url() ?>/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="<?= base_url() ?>/assets/css/loaders.css" rel="stylesheet" type="text/css" />
 		<!--end::Global Stylesheets Bundle-->
 		<?= $this->renderSection ("pageStyles") ?>
 </head>
 <!--end::Head--> 
-	<!--begin::Body-->
-	<?php 
-	/**
-	 * <?php if ($page === 'home'): ?>data-sidebar="on"<?php endif; ?> 
-	 * <?php if ($page ==='home'): ?>sidebar-enabled {css}<?php endif; ?>
-	 * 
-	 */
-	?>
+	

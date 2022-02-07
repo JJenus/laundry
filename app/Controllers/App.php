@@ -60,6 +60,14 @@ class App extends BaseController
     }
 	  return view ("dashboard/".$page, $this->data);
 	} 
+	
+	public function view($page=null){
+	  if (!is_file(APPPATH.'/Views/'. $page. '.php')){
+        // Whoops, we don't have a page for that!
+        throw new \CodeIgniter\Exceptions\PageNotFoundException($page);
+    }
+	  return view ($page, $this->data);
+	} 
 
 }
 

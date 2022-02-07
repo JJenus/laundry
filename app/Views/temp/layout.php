@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en"> 
   <?= view('temp/header') ?> 
+  <div class="page-loading active">
+      <div class="page-loading-inner">
+        <div class="loader09 mb-8"></div><span>Loading...</span>
+      </div>
+    </div>
   <!--nav goes into main  -->
   <?= $this->renderSection("main") ?>
   <!--begin::Scrolltop-->

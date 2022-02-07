@@ -132,7 +132,7 @@
 										<!--begin::Card-->
 										<div class="card">
 											<div class="card-body py-10">
-												<h2 class="text-dark fw-bolder fs-1 mb-5">Popular Articles</h2>
+												<h2 class="text-dark fw-bolder fs-1 mb-5">App/main</h2>
 												<!--begin::Accordion-->
 												<div class="accordion accordion-icon-toggle" id="kt_accordion_1">
 													<!--begin::Item-->
@@ -152,13 +152,17 @@
 																</span>
 																<!--end::Svg Icon-->
 															</span>
-															<h3 class="fs-4 text-gray-800 fw-bold mb-0 ms-4">The best way to quick start business</h3>
+															<h3 class="fs-4 text-gray-800 fw-bold mb-0 ms-4">Create new customer (order) details</h3>
 														</div>
 														<!--end::Header-->
 														<!--begin::Body-->
 														<div id="kt_accordion_1_item_1" class="fs-6 collapse show ps-10" data-bs-parent="#kt_accordion_1">
-															<div class="mb-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
-															<div>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+															<div class="mb-5">
+															  From the sidebar, click "create customer" button. 
+															  Fill in the details, add clothes and submit. 
+															</div>
+															<div>
+															</div>
 														</div>
 														<!--end::Body-->
 													</div>
@@ -180,7 +184,7 @@
 																</span>
 																<!--end::Svg Icon-->
 															</span>
-															<h3 class="fs-4 text-gray-800 fw-bold mb-0 ms-4">How To Create Channel ?</h3>
+															<h3 class="fs-4 text-gray-800 fw-bold mb-0 ms-4">How To Create clothes ?</h3>
 														</div>
 														<!--end::Header-->
 														<!--begin::Body-->
@@ -209,7 +213,7 @@
 																</span>
 																<!--end::Svg Icon-->
 															</span>
-															<h3 class="fs-4 text-gray-800 fw-bold mb-0 ms-4">What are the support terms &amp; conditions ?</h3>
+															<h3 class="fs-4 text-gray-800 fw-bold mb-0 ms-4">How to record expenses ?</h3>
 														</div>
 														<!--end::Header-->
 														<!--begin::Body-->
@@ -234,7 +238,7 @@
 																</span>
 																<!--end::Svg Icon-->
 															</span>
-															<h3 class="fs-4 text-gray-800 fw-bold mb-0 ms-4">What is the 6 Months support extention ?</h3>
+															<h3 class="fs-4 text-gray-800 fw-bold mb-0 ms-4">How To Create Issue(s)?</h3>
 														</div>
 														<!--end::Header-->
 														<!--begin::Body-->
@@ -259,7 +263,7 @@
 																</span>
 																<!--end::Svg Icon-->
 															</span>
-															<h3 class="fs-4 text-gray-800 fw-bold mb-0 ms-4">How can I keep up to date my item ?</h3>
+															<h3 class="fs-4 text-gray-800 fw-bold mb-0 ms-4">How To Give Out clothes?</h3>
 														</div>
 														<!--end::Header-->
 														<!--begin::Body-->

@@ -1,63 +1,43 @@
-# CodeIgniter 4 Application Starter
+<h1 align="center">Welcome to laundry 👋</h1>
+<p>
+  <a href="https://www.npmjs.com/package/laundry" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/v/laundry.svg">
+  </a>
+  <a href="https://twitter.com/\_jjenus" target="_blank">
+    <img alt="Twitter: \_jjenus" src="https://img.shields.io/twitter/follow/\_jjenus.svg?style=social" />
+  </a>
+</p>
 
-## What is CodeIgniter?
+> This laundry management software replaces traditional paper mechanism for laundry service providers as it is web based (built with codeigniter, vue and bootstrap). The software helps to identify customers, staffs and the progress of customers clothes or in matrix word, work flow. The unique id associated with each customer’s clothes is revealed only to the customer at reception to ensure authenticity and privacy. An added feature of this laundry management software is extensive search by name, id and date of visit to get previous records if they were any.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](http://codeigniter.com).
+### 🏠 [Homepage](Also, their is a simple to navigate dashboard for administrators and managers to monitor laundry processes and basic financial records.)
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+### ✨ [Demo](https://jjenus-laundry.herokuapp.com)
 
-More information about the plans for version 4 can be found in [the announcement](http://forum.codeigniter.com/thread-62615.html) on the forums.
+## Install
 
-The user guide corresponding to this version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+```sh
+Simple upload software files to server, update base_url in &#34;app/congfig/App.php&#34; to appropriate url. open the app with the updated url and follow the prompt.
+```
 
-## Installation & updates
+## Usage
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+```sh
+Check help section in live application
+```
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+## Author
 
-## Setup
+👤 **Alakere Jenus**
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+* Website: https://jjenus.github.io
+* Twitter: [@\_jjenus](https://twitter.com/\_jjenus)
+* Github: [@jjenus](https://github.com/jjenus)
+* LinkedIn: [@https:\/\/www.linkedin.com\/in\/alakere-jenus-878357207](https://linkedin.com/in/https:\/\/www.linkedin.com\/in\/alakere-jenus-878357207)
 
-## Important Change with index.php
+## Show your support
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+Give a ⭐️ if this project helped you!
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
-
-**Please** read the user guide for a better explanation of how CI4 works!
-
-## Repository Management
-
-We use Github issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
-
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
-
-## Server Requirements
-
-PHP version 7.3 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
-- xml (enabled by default - don't turn it off)
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

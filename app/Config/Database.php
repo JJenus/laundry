@@ -29,25 +29,6 @@ class Database extends Config
 	 * The default database connection.
 	 *
 	 * @var array
-	 	public $default = [
-    'DSN'      => 'MySQLi://b1a2980fbdbb62:1bd9d480@us-cdbr-east-03.cleardb.com/heroku_05b41214224e19b?reconnect=true',
-    'hostname' => 'us-cdbr-east-03.cleardb.com',
-    'username' => 'bb09caa56b1999',
-    'password' => '22ff5304',
-    'database' => 'heroku_587c69770df2b1f',
-    'DBDriver' => 'MySQLi',
-    'DBPrefix' => '',
-    'pConnect' => TRUE,
-    'DBDebug'  => TRUE,
-    'charset'  => 'utf8',
-    'DBCollat' => 'utf8_general_ci',
-    'swapPre'  => '',
-    'encrypt'  => FALSE,
-    'compress' => FALSE,
-    'strictOn' => FALSE,
-    'failover' => [],
-];
-	 */
 	public $default = [
 		'DSN'      => '',
 		'hostname' => '',
@@ -67,6 +48,25 @@ class Database extends Config
 		'failover' => [],
 		'port'     => 3306,
 	];
+	 */
+	 	public $default = [
+    'DSN'      => 'MySQLi://b1a2980fbdbb62:1bd9d480@us-cdbr-east-03.cleardb.com/heroku_05b41214224e19b?reconnect=true',
+    'hostname' => 'us-cdbr-east-03.cleardb.com',
+    'username' => 'bb09caa56b1999',
+    'password' => '22ff5304',
+    'database' => 'heroku_587c69770df2b1f',
+    'DBDriver' => 'MySQLi',
+    'DBPrefix' => '',
+    'pConnect' => TRUE,
+    'DBDebug'  => TRUE,
+    'charset'  => 'utf8',
+    'DBCollat' => 'utf8_general_ci',
+    'swapPre'  => '',
+    'encrypt'  => FALSE,
+    'compress' => FALSE,
+    'strictOn' => FALSE,
+    'failover' => [],
+];
 	 
 
 	/**

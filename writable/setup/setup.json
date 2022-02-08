@@ -1,72 +1,72 @@
 {
-    "installed": false,
+    "installed": true,
     "migrated": false,
-    "createGroups": false,
+    "createGroups": true,
     "isAdminCreated": false,
-    "createPermissions": false,
-    "setupPermissions": false,
+    "createPermissions": true,
+    "setupPermissions": true,
     "permissions": [
         {
             "permission": "app.admin",
             "description": "Super user with all possible actions in the app. Only available to admin user group. Which includes create user, change user roles, delete users, manage app, manage accounting and clothes, etc. ",
-            "status": false
+            "status": true
         },
         {
             "permission": "app.manage",
             "description": "users with permissions to accounting, dispense clothes, and create new users.",
-            "status": false
+            "status": true
         },
         {
             "permission": "app.accounts.manage",
             "description": "users with permission to all accounting data.",
-            "status": false
+            "status": true
         },
         {
             "permission": "app.clothes.manage",
             "description": "users especially employees, with all permissions to handle clothes. Create, update, and delete rights.",
-            "status": false
+            "status": true
         },
         {
             "permission": "app.clothes.wash",
             "description": "users with permission to wash and activate washed on clothes.",
-            "status": false
+            "status": true
         },
         {
             "permission": "app.clothes.iron",
             "description": "users with permission to iron and activate ironed on clothes.",
-            "status": false
+            "status": true
         },
         {
             "permission": "app.clothes.dispense",
             "description": "users with the express permission give out clothes to customers and activate dispensed on clothes.",
-            "status": false
+            "status": true
         }
     ],
     "groups": [
         {
             "role": "admin",
             "description": "Super user",
-            "status": false
+            "status": true
         },
         {
             "role": "manager",
             "description": "General overseer in the app affairs",
-            "status": false
+            "status": true
         },
         {
             "role": "receptionist",
             "description": "Ability to receive, give out, and comfirm laundry operations.",
-            "status": false
+            "status": true
         },
         {
             "role": "ironer",
             "description": "Charged with the task to iron",
-            "status": false
+            "status": true
         },
         {
             "role": "washer",
             "description": "An employed washer\/cleaner",
-            "status": false
+            "status": true
         }
     ]
 }

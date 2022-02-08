@@ -3,14 +3,14 @@
   <a href="https://www.npmjs.com/package/laundry" target="_blank">
     <img alt="Version" src="https://img.shields.io/npm/v/laundry.svg">
   </a>
-  <a href="https://twitter.com/\_jjenus" target="_blank">
-    <img alt="Twitter: \_jjenus" src="https://img.shields.io/twitter/follow/\_jjenus.svg?style=social" />
+  <a href="https://twitter.com/@_jjenus" target="_blank">
+    <img alt="Twitter: @_jjenus" src="https://img.shields.io/twitter/follow/@_jjenus.svg?style=social" />
   </a>
 </p>
 
-> This laundry management software replaces traditional paper mechanism for laundry service providers as it is web based (built with codeigniter, vue and bootstrap). The software helps to identify customers, staffs and the progress of customers clothes or in matrix word, work flow. The unique id associated with each customer’s clothes is revealed only to the customer at reception to ensure authenticity and privacy. An added feature of this laundry management software is extensive search by name, id and date of visit to get previous records if they were any.
+> This laundry management software replaces traditional paper mechanism for laundry service providers as it is web based (built with codeigniter, vue and bootstrap). The software helps to identify customers, staffs and the progress of customers clothes or in matrix word, work flow. The unique id associated with each customer’s clothes is revealed only to the customer at reception to ensure authenticity and privacy. An added feature of this laundry management software is extensive search by name, id and date of visit to get previous records if they were any. Also, their is a simple to navigate dashboard for administrators and managers to monitor laundry processes and basic financial records.
 
-### 🏠 [Homepage](Also, their is a simple to navigate dashboard for administrators and managers to monitor laundry processes and basic financial records.)
+### 🏠 [Homepage](https://jjenus-laundry.herokuapp.com/main)
 
 ### ✨ [Demo](https://jjenus-laundry.herokuapp.com)
 

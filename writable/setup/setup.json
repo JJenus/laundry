@@ -2,8 +2,9 @@
     "installed": false,
     "migrated": false,
     "createGroups": false,
-    "createAdmin": false,
+    "isAdminCreated": false,
     "createPermissions": false,
+    "setupPermissions": false,
     "permissions": [
         {
             "permission": "app.admin",

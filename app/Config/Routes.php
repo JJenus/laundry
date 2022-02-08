@@ -30,6 +30,7 @@ $routes->setAutoRoute(true);
  * --------------------------------------------------------------------
  */
  $routes->addRedirect("/", "app/main");
+ $routes->addRedirect("app/dashboard", "app/dashboard/overview");
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->group("app", ['filter' => 'login:admin,manager,receptionist,ironer,washer'], function($app){
@@ -38,6 +39,8 @@ $routes->group("app", ['filter' => 'login:admin,manager,receptionist,ironer,wash
   $app->get('trial', 'App::trials');
   $app->get('laundry', 'App::laundry');
   $app->get('user', 'App::user');
+  $app->get('help', 'App::help');
+  $app->get('about', 'App::about');
   $app->group("hire", ['filter' => 'role:admin,manager'], function($hire){
     $hire->get('generateId', 'AuthController::generateId');
     $hire->get('checkAvailability', 'AuthController::checkAvailability');
@@ -46,7 +49,6 @@ $routes->group("app", ['filter' => 'login:admin,manager,receptionist,ironer,wash
     $dashboard->addRedirect("/", "app/dashboard/overview");
     $dashboard->get("(:any)", "App::dashboard/$1");
   });
-  $app->get("(:any)", "App::view/$1");
 });
 
 $routes->group("staffs", ['filter' => 'login'], function($route){

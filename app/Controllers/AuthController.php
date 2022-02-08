@@ -43,7 +43,7 @@ class AuthController extends Controller
 	 */
 	public function login()
 	{
-	  $setup = json_decode(file_get_contents(WRITEPATH."cache/setup.json"));
+	  $setup = json_decode(file_get_contents(WRITEPATH."setup/setup.json"));
 		if(!$setup->isAdminCreated || !$setup->installed)
 		  return redirect()->route("setup");
 		// No need to show a login form if the user
@@ -99,8 +99,8 @@ class AuthController extends Controller
 			return redirect()->to(route_to('reset-password') .'?token='. $this->auth->user()->reset_hash)->withCookies();
 		}
 		$userId = $this->auth->id();
-		$url = ($this->authorize->inGroup("admin", $userId) || $this->authorize->hasPermission("app.manage", $userId) ) ? route_to("app/dashboard"):
-		       ($this->hasPermissions($userId)? route_to("app/main") : route_to("app/laundry"));
+		$url = ($this->authorize->inGroup("admin", $userId) || $this->authorize->hasPermission("app.manage", $userId) ) ? route_to("app/dashboard/overview"):
+		       ($this->hasPermissions($userId)? route_to("app/main/") : route_to("app/laundry/"));
 		#$redirectURL = session('redirect_url') ?? $url ?? '/';
 		$redirectURL = $url ?? '/';
 		unset($_SESSION['redirect_url']);

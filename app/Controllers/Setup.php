@@ -12,7 +12,7 @@ class Setup extends BaseController
   
   public function __construct(){
     $this->config = config('Auth');
-    $this->setup = json_decode(file_get_contents(WRITEPATH."cache/setup.json"));
+    $this->setup = json_decode(file_get_contents(WRITEPATH."setup/setup.json"));
     if (empty($this->setup) || $this->setup->installed) {
       return redirect()->to(route_to("home"));
     }
@@ -33,7 +33,7 @@ class Setup extends BaseController
 	}
 	
 	private function saveProcess(){
-	  file_put_contents(WRITEPATH."cache/setup.json", json_encode($this->setup, JSON_PRETTY_PRINT));
+	  file_put_contents(WRITEPATH."setup/setup.json", json_encode($this->setup, JSON_PRETTY_PRINT));
 	}
 	
 	

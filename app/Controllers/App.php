@@ -33,6 +33,13 @@ class App extends BaseController
   public function laundry(){
     return view($this->config->views["laundry"], $this->data);     
   }
+  public function help(){
+    return view("help", $this->data);     
+  }
+  
+  public function about(){
+    return view("about", $this->data);     
+  }
   
   public function user(){
 	  $user = $this->authenticate->user();

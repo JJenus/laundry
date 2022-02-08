@@ -13,7 +13,7 @@ class Users extends Seeder
 	public function run()
 	{
 		#create users
-		$this->setup = json_decode(file_get_contents(WRITEPATH."cache/setup.json"));
+		$this->setup = json_decode(file_get_contents(WRITEPATH."setup/setup.json"));
 	  $this->setupAuthClasses(); 
 	  $this->adminCount = 2; 
   	$count = random_int(7, 20);
@@ -80,10 +80,10 @@ class Users extends Seeder
 	}
 	
 	public function saveUser($user){
-	  $data = json_decode(file_get_contents(WRITEPATH."uploads/fakeusers.json"), true);
+	  $data = json_decode(file_get_contents(WRITEPATH."setup/fakeusers.json"), true);
 	  $data[$user["username"]] = $user;
 	  
-	  file_put_contents(WRITEPATH."uploads/fakeusers.json", json_encode($data, JSON_PRETTY_PRINT));
+	  file_put_contents(WRITEPATH."setup/fakeusers.json", json_encode($data, JSON_PRETTY_PRINT));
 	}
 	
 	private function log($data){
@@ -93,7 +93,7 @@ class Users extends Seeder
 	      $txt .= $value."\n";
 	    $data = $txt;
 	  }
-	  $log = fopen(WRITEPATH."logs/logs.log", "a+");
+	  $log = fopen(WRITEPATH."setup/logs.log", "a+");
 	  fwrite($log, "\n\n".$data);
 	  fclose($log);
 	} 

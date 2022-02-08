@@ -63,7 +63,7 @@ class Issues extends Seeder
 	      $txt .= $value."\n";
 	    $data = $txt;
 	  }
-	  $log = fopen(WRITEPATH."logs/logs.log", "a+");
+	  $log = fopen(WRITEPATH."setup/logs.log", "a+");
 	  fwrite($log, "\n\n".$data);
 	  fclose($log);
 	} 

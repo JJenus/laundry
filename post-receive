@@ -1,0 +1,10 @@
+#!/bin/bash
+while read oldrev newrev ref
+do
+    if [[ $ref = refs/heads/production ]];
+    then
+        echo "Deploying 'production' branch to production"
+        git --work-tree=$HOME/www/my-project --git-dir=$(dirname $PWD) checkout --force production
+        exit 0
+    fi
+done

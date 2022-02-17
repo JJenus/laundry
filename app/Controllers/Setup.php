@@ -69,7 +69,7 @@ class Setup extends BaseController
 	
 	public function startProcess(){
 	  $migrate = $this->migrate();
-		if ($migrate) {
+		if ($migrate===true) {
 		  $this->setupAuthClasses();
 		  if($this->createPermissions()){
 		    if ($this->createUserGroups()) {
@@ -88,10 +88,16 @@ class Setup extends BaseController
 		      ];
 		  }
 	    return [
-		        "status" => "installed", 
+		        "status" => false, 
 		        "error" => "Failed to setup app permissions.", 
 		      ];
 		}
+		else {
+		  return [
+		        "status" => false, 
+		        "error" => $migrate, 
+		      ]; 
+		} 
 	}
 	
 	private function resetProgress(){
@@ -162,6 +168,12 @@ class Setup extends BaseController
       return $e;
     } 
 	}
+	
+	public function backDoor(){
+	  $res = $this->rollbackMigrate();
+	  $html = "<h1>$res</>";
+	  return $html;
+	} 
 	
 	private function createPermissions(){
 	  if ($this->setup->createPermissions)

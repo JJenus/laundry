@@ -1,8 +1,8 @@
 {
     "installed": true,
-    "migrated": false,
+    "migrated": true,
     "createGroups": true,
-    "isAdminCreated": false,
+    "isAdminCreated": true,
     "createPermissions": true,
     "setupPermissions": true,
     "permissions": [

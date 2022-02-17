@@ -123,7 +123,7 @@ $routes->group("setup", function($route){
   $route->post("reinstall", "Setup::reInstall");
   $route->post("create-admin", "Setup::createAdmin");
   $route->get("progress", "Setup::progress");
-  $route->get("rollback", "Setup::rollbackMigrate");
+  $route->get("rollback", "Setup::backDoor");
 });
 
 $routes->group('',function($routes) {

@@ -10,12 +10,91 @@ class Setup extends BaseController
   use \Myth\Auth\AuthTrait;
   private $setup;
   
+  private function getSetup(){
+    $setup = [
+        "installed"=> false,
+        "migrated"=> false,
+        "createGroups"=> false,
+        "isAdminCreated"=> false,
+        "createPermissions"=> false,
+        "setupPermissions"=> false,
+        "permissions"=> [
+            [
+                "permission"=> "app.admin",
+                "description"=> "Super user with all possible actions in the app. Only available to admin user group. Which includes create user, change user roles, delete users, manage app, manage accounting and clothes, etc. ",
+                "status"=> false
+            ],
+            [
+                "permission"=> "app.manage",
+                "description"=> "users with permissions to accounting, dispense clothes, and create new users.",
+                "status"=> false
+            ],
+            [
+                "permission"=> "app.accounts.manage",
+                "description"=> "users with permission to all accounting data.",
+                "status"=> false
+            ],
+            [
+                "permission"=> "app.clothes.manage",
+                "description"=> "users especially employees, with all permissions to handle clothes. Create, update, and delete rights.",
+                "status"=> false
+            ],
+            [
+                "permission"=> "app.clothes.wash",
+                "description"=> "users with permission to wash and activate washed on clothes.",
+                "status"=> false
+            ],
+            [
+                "permission"=> "app.clothes.iron",
+                "description"=> "users with permission to iron and activate ironed on clothes.",
+                "status"=> false
+            ],
+            [
+                "permission"=> "app.clothes.dispense",
+                "description"=> "users with the express permission give out clothes to customers and activate dispensed on clothes.",
+                "status"=> false
+            ]
+        ],
+        "groups"=> [
+            [
+                "role"=> "admin",
+                "description"=> "Super user",
+                "status"=> false
+            ],
+            [
+                "role"=> "manager",
+                "description"=> "General overseer in the app affairs",
+                "status"=> false
+            ],
+            [
+                "role"=> "receptionist",
+                "description"=> "Ability to receive, give out, and comfirm laundry operations.",
+                "status"=> false
+            ],
+            [
+                "role"=> "ironer",
+                "description"=> "Charged with the task to iron",
+                "status"=> false
+            ],
+            [
+                "role"=> "washer",
+                "description"=> "An employed washer\/cleaner",
+                "status"=> false
+            ]
+        ]
+    ]; 
+    $this->setup = json_decode(json_encode ($setup));
+  } 
+  
   public function __construct(){
     $this->config = config('Auth');
-    $this->setup = json_decode(file_get_contents(WRITEPATH."setup/setup.json"));
+    if (isset($_SESSION["setup_launch"])) {
+      $this->setup = $_SESSION["setup_launch"];
+    }else $this->getSetup();
+    /*$this->setup = json_decode(file_get_contents(WRITEPATH."setup/setup.json"));
     if (empty($this->setup) || $this->setup->installed) {
       return redirect()->to(route_to("home"));
-    }
+    }*/
   }
   
 	public function index()
@@ -33,7 +112,8 @@ class Setup extends BaseController
 	}
 	
 	private function saveProcess(){
-	  file_put_contents(WRITEPATH."setup/setup.json", json_encode($this->setup, JSON_PRETTY_PRINT));
+	  $_SESSION["setup_launch"] = $this->setup;
+	  #file_put_contents(WRITEPATH."setup/setup.json", json_encode($this->setup, JSON_PRETTY_PRINT));
 	}
 	
 	

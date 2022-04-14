@@ -1,6 +1,6 @@
 {
     "installed": false,
-    "migrated": false,
+    "migrated": true,
     "createGroups": false,
     "isAdminCreated": false,
     "createPermissions": false,
@@ -65,7 +65,7 @@
         },
         {
             "role": "washer",
-            "description": "An employed washer\/cleaner",
+            "description": "An employed washer\\\/cleaner",
             "status": false
         }
     ]

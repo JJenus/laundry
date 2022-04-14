@@ -223,6 +223,9 @@ class AuthController extends Controller
 		// Save the user
 		$allowedPostFields = array_merge(["password"], $this->config->validFields, $this->config->personalFields);
 		$user = new User($this->request->getPost($allowedPostFields));
+		if (!$user->image_url) {
+		  $user->{'image_url'} = $user->gender === "female" ? base_url(). "/assets/media/avatars/avatar-female.jpeg" : base_url(). "/assets/media/avatars/avatar-male.jpeg";
+		}
 
 		$this->config->requireActivation !== false ? $user->generateActivateHash() : $user->activate();
 

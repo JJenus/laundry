@@ -20,6 +20,7 @@
           Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
         </span> 
       </button>
+       <img src="<?= base_url().'/assets/media/avatars/avatar-male.jpeg'?>">
     </div>
     
     

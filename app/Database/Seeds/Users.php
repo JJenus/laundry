@@ -56,7 +56,7 @@ class Users extends Seeder
       
       $gender = (["male", "female"])[random_int(0,1)];
       $name = static::faker(['it_IT', 'en_US'])->name($gender);
-      
+      $imgUrl = $gender === "female" ? base_url(). "assets/media/avatars/avatar-female.jpeg":base_url(). "assets/media/avatars/avatar-male.jpeg"; 
       $user = [
         "role" => $role, 
         "name" => $name, 
@@ -65,7 +65,7 @@ class Users extends Seeder
         "email" => static::faker()->email, 
         "phone" => static::faker()->phoneNumber, 
         "password" => static::faker()->word, 
-        "image_url" => static::faker()->imageUrl($width = 640, $height = 480, $category = "human", $randomize = true, $word = null, $gray = false),        
+        "image_url" => $imgUrl,        
         "address" => static::faker()->streetAddress, 
         "city" => static::faker()->city, 
         "bank" => static::faker()->company, 

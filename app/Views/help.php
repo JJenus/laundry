@@ -189,9 +189,9 @@
 														<!--end::Header-->
 														<!--begin::Body-->
 														<div id="kt_accordion_1_item_2" class="collapse fs-6 ps-10" data-bs-parent="#kt_accordion_1">
-															<div class="mb-5">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</div>
-															<div class="mb-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
-															<div>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+														  The app is built to be user friendly. 
+														  If you require a complete user instruction, please make a 
+														  donation to the project.
 														</div>
 														<!--end::Body-->
 													</div>
@@ -217,7 +217,11 @@
 														</div>
 														<!--end::Header-->
 														<!--begin::Body-->
-														<div id="kt_accordion_1_item_3" class="collapse fs-6 ps-10" data-bs-parent="#kt_accordion_1">Some plugins may ask for a purchase code for registration/activation once installed, however, you can simply ignore these messages as bundled plugins do not require activation or registration.</div>
+														<div id="kt_accordion_1_item_3" class="collapse fs-6 ps-10" data-bs-parent="#kt_accordion_1">
+														  The app is built to be user friendly. 
+														  If you require a complete user instruction, please make a 
+														  donation to the project. 
+														</div>
 														<!--end::Body-->
 													</div>
 													<!--end::Item-->
@@ -242,7 +246,11 @@
 														</div>
 														<!--end::Header-->
 														<!--begin::Body-->
-														<div id="kt_accordion_1_item_4" class="collapse fs-6 ps-10" data-bs-parent="#kt_accordion_1">Some plugins may ask for a purchase code for registration/activation once installed, however, you can simply ignore these messages as bundled plugins do not require activation or registration. The plugin will still work as intended with the theme once the theme has been activated/registered. When a plugin is updated, the theme author will include the latest version of the bundled plugin with their next theme update.</div>
+														<div id="kt_accordion_1_item_4" class="collapse fs-6 ps-10" data-bs-parent="#kt_accordion_1">
+														  The app is built to be user friendly. 
+														  If you require a complete user instruction, please make a 
+														  donation to the project.
+														</div>
 														<!--end::Body-->
 													</div>
 													<!--end::Item-->
@@ -267,7 +275,11 @@
 														</div>
 														<!--end::Header-->
 														<!--begin::Body-->
-														<div id="kt_accordion_1_item_5" class="collapse fs-6 ps-10" data-bs-parent="#kt_accordion_1">Some plugins may ask for a purchase code for registration/activation once installed, however, you can simply ignore these messages as bundled plugins do not require activation or registration. The plugin will still work as intended with the theme once the theme has been activated/registered.</div>
+														<div id="kt_accordion_1_item_5" class="collapse fs-6 ps-10" data-bs-parent="#kt_accordion_1">
+														  The app is built to be user friendly. 
+														  If you require a complete user instruction, please make a 
+														  donation to the project.
+														</div>
 														<!--end::Body-->
 													</div>
 													<!--end::Item-->

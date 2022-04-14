@@ -1,5 +1,4 @@
-
-	<!--begin::Head-->
+<!--begin::Head-->
 <head>
 		<meta charset="utf-8" />
 		<title><?= APP_NAME ?></title>
@@ -33,4 +32,3 @@
 		<?= $this->renderSection ("pageStyles") ?>
 </head>
 <!--end::Head--> 
-	

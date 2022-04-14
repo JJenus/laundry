@@ -1,5 +1,5 @@
 <?php
-defined("APP_NAME") || define("APP_NAME", "White City");
+defined("APP_NAME") || define("APP_NAME", "Laundry");
 /*
  | --------------------------------------------------------------------
  | App Namespace

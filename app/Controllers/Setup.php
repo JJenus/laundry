@@ -171,7 +171,7 @@ class Setup extends BaseController
 	
 	public function backDoor(){
 	  $res = $this->rollbackMigrate();
-	  $html = "<h1>$res</>";
+	  $html = "<h1>$res is cm</>";
 	  return $html;
 	} 
 	
@@ -267,9 +267,12 @@ class Setup extends BaseController
 
 		// Save the user
 		$allowedPostFields = ['name', 'email', 'username', 'password'];
-		
+		if (!isset($_POST["image_url"])) {
+		  $gender = $_POST["gender"] ?? "male";
+		  $_POST["image_url"] = ($gender === "female") ? base_url(). "/assets/media/avatars/avatar-female.jpeg":base_url(). "/assets/media/avatars/avatar-male.jpeg";
+		}
 		$user = new User($this->request->getPost($allowedPostFields));
-
+		
 		$this->config->requireActivation !== false ? $user->generateActivateHash() : $user->activate();
 		
 		#adding group 

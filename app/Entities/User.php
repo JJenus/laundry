@@ -43,7 +43,7 @@ class User extends Entity
      * @var array
      */
     protected $roles = [];
-
+    
 	/**
 	 * Automatically hashes the password when set.
 	 *

@@ -44,9 +44,10 @@ class AuthController extends Controller
 	 */
 	public function login()
 	{
-	  $setup = (new Setting());
+	  /*$setup = (new Setting());
 		if(!$setup || !isset($setup->getCore()->isAdminCreated) || !isset($setup->getCore()->installed))
 		  return redirect()->route("setup");
+		*/
 		// No need to show a login form if the user
 		// is already logged in.
 		if ($this->auth->check()){

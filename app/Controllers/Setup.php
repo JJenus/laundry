@@ -90,9 +90,8 @@ class Setup extends BaseController
   public function __construct(){
     $this->session = session();
     $this->config = config('Auth');
-    if (isset($_SESSION["setup_launch"])) {
-      $this->setup = $_SESSION["setup_launch"];
-    }  else $this->getSetup();
+    
+    $this->getSetup();
     
   }
   

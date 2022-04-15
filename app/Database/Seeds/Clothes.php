@@ -35,7 +35,7 @@ class Clothes extends Seeder
 	
 	private function generateClothes(){
 	  $dateNow = date("Y-m-d H:i:s");
-	  for($day = 65; $day >= 0; $day--){
+	  for($day = 10; $day >= 0; $day--){
 	    $selectable_types = ["manager", "receptionist"];
 	    $user_type = $selectable_types[random_int(0,1)];
 	    

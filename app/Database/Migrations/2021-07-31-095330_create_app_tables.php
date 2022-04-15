@@ -196,7 +196,7 @@ class CreateAppTables extends Migration
             'deleted_at'       => ['type' => 'datetime', 'null' => true],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('user_id', 'users', 'id', false, 'CASCADE');
+        #$this->forge->addForeignKey('user_id', 'users', 'id', false, 'CASCADE');
         $this->forge->createTable('employees', true);
          
          
@@ -220,7 +220,7 @@ class CreateAppTables extends Migration
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('created_by', 'users', 'id', false, 'CASCADE');
+       # $this->forge->addForeignKey('created_by', 'users', 'id', false, 'CASCADE');
         $this->forge->createTable('customers', true);
         
         
@@ -258,13 +258,13 @@ class CreateAppTables extends Migration
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('customer_id', 'customers', 'id', false, 'CASCADE');
+       /*$this->forge->addForeignKey('customer_id', 'customers', 'id', false, 'CASCADE');
         $this->forge->addForeignKey('type', 'clothe_types', 'id', false, 'CASCADE');
         $this->forge->addForeignKey('washer', 'users', 'id', false, 'CASCADE');
         $this->forge->addForeignKey('ironer', 'users', 'id', false, 'CASCADE');
         $this->forge->addForeignKey('confirmed_by', 'users', 'id', false, 'CASCADE');
         $this->forge->addForeignKey('dispensed_by', 'users', 'id', false, 'CASCADE');
-        $this->forge->createTable('clothes', true);
+        */$this->forge->createTable('clothes', true);
         
         /**
          * CLOTHE_ACTIVITIES 
@@ -282,7 +282,7 @@ class CreateAppTables extends Migration
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('clothe_id', 'clothes', 'id', false, 'CASCADE');
+        #$this->forge->addForeignKey('clothe_id', 'clothes', 'id', false, 'CASCADE');
         $this->forge->createTable('clothe_activities', true);
         
         
@@ -304,7 +304,7 @@ class CreateAppTables extends Migration
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('clothe_id', 'clothes', 'id', false, 'CASCADE');
+        #$this->forge->addForeignKey('clothe_id', 'clothes', 'id', false, 'CASCADE');
         $this->forge->createTable('issues', true);
         
         
@@ -323,7 +323,7 @@ class CreateAppTables extends Migration
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('employee_id', 'users', 'id', false, 'CASCADE');
+        #$this->forge->addForeignKey('employee_id', 'users', 'id', false, 'CASCADE');
         $this->forge->createTable('expenses', true);
     }
 

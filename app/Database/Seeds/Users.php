@@ -29,7 +29,7 @@ class Users extends Seeder
   		  $this->log($userModel->errors());
   		}else{
   		  $this->saveUser($generatedUser);
-  		  $generatedUser["user_id"] = $userModel->insertID();
+  		  $generatedUser["user_id"] = $userModel->insertID;
   		  (model("EmployeeModel"))->save($generatedUser);
   		} 
   	} 
@@ -83,7 +83,7 @@ class Users extends Seeder
 	  $data = json_decode(file_get_contents(WRITEPATH."setup/fakeusers.json"), true);
 	  $data[$user["username"]] = $user;
 	  
-	  file_put_contents(WRITEPATH."setup/fakeusers.json", json_encode($data, JSON_PRETTY_PRINT));
+	  file_put_contents(WRITEPATH."/setup/fakeusers.json", json_encode($data, JSON_PRETTY_PRINT));
 	}
 	
 	private function log($data){

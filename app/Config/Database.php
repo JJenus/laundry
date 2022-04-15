@@ -51,11 +51,11 @@ class Database extends Config
 	];
 	 */
 	 	public $default = [
-  	 	'DSN'      => 'MySQLi://bf3ee34076de2e:e2130f31@us-cdbr-east-05.cleardb.net/heroku_3d70164d84a45cf?reconnect=true',
+  	 	'DSN'      => 'MySQLi://b810d40b75a50b:f47a7ae6@us-cdbr-east-05.cleardb.net/heroku_a6f71159996f614?reconnect=true',
       'hostname' => 'us-cdbr-east-03.cleardb.com',
-      'username' => 'bf3ee34076de2e',
-      'password' => 'e2130f31',
-      'database' => 'heroku_3d70164d84a45cf',
+      'username' => 'b810d40b75a50b',
+      'password' => 'f47a7ae6',
+      'database' => 'heroku_a6f71159996f614',
       'DBDriver' => 'MySQLi',
       'DBPrefix' => '',
       'pConnect' => TRUE,

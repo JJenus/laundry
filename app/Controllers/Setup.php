@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use Myth\Auth\Entities\User;
+use App\Libraries\Setting; 
 
 class Setup extends BaseController
 {
@@ -87,14 +88,12 @@ class Setup extends BaseController
   } 
   
   public function __construct(){
+    $this->session = session();
     $this->config = config('Auth');
     if (isset($_SESSION["setup_launch"])) {
       $this->setup = $_SESSION["setup_launch"];
-    }else $this->getSetup();
-    /*$this->setup = json_decode(file_get_contents(WRITEPATH."setup/setup.json"));
-    if (empty($this->setup) || $this->setup->installed) {
-      return redirect()->to(route_to("home"));
-    }*/
+    }  else $this->getSetup();
+    
   }
   
 	public function index()
@@ -103,17 +102,30 @@ class Setup extends BaseController
 	  return view("setup");
 	}
 	
+	public function backDoor()
+	{
+	  // check if setup is done already;
+	  echo print_r((new Setting())->getCore());
+	}
+	
 	public function isInstalled(){
 	  return $this->setup->installed;
 	}
 	
 	public function progress(){
-	  return $this->response->setJson($this->setup);
+	  if($this->setup->installed){
+	    $this->session->set(
+	      ["installed" => $this->setup] 
+	    );
+	  } 
+	  
+	  return isset($_SESSION["installed"])? (new Setting())->getCore() : $this->response->setJson($this->setup);
 	}
 	
 	private function saveProcess(){
-	  $_SESSION["setup_launch"] = $this->setup;
-	  #file_put_contents(WRITEPATH."setup/setup.json", json_encode($this->setup, JSON_PRETTY_PRINT));
+	  $this->session->set(
+	      ["setup_launch" => $this->setup] 
+	  );
 	}
 	
 	
@@ -156,7 +168,13 @@ class Setup extends BaseController
 		      $s_perms = $this->setupPermissions();
 		      if($s_perms !== true)
 		        return $s_perms;
-		      $this->setup->installed = true;
+		      
+		      model("Setup")->insert([
+      	    "action" => "installed", 
+      	    "status" => true, 
+      	    "type" => "core",
+      	    "description" => "core function"
+      	  ]);
 		      $this->saveProcess();
 		      return [
 		        "status" => "installed"
@@ -175,6 +193,7 @@ class Setup extends BaseController
 		else {
 		  return [
 		        "status" => false, 
+		        "message" => "migration error", 
 		        "error" => $migrate, 
 		      ]; 
 		} 
@@ -237,7 +256,6 @@ class Setup extends BaseController
     try
     {
       if ($migrate->regress(0)) {
-        $this->resetProgress();
         return true;
       } else {
        return "Unknown error occurred";
@@ -249,7 +267,7 @@ class Setup extends BaseController
     } 
 	}
 	
-	public function backDoor(){
+	public function backDoior(){
 	  $res = $this->rollbackMigrate();
 	  $html = "<h1>$res is cm</>";
 	  return $html;
@@ -270,6 +288,12 @@ class Setup extends BaseController
       $id = $this->authorize->createPermission($perm->permission, $perm->description);
     	if($id){
     	  $permissions[$key]->status = true;
+    	  model("Setup")->insert([
+    	    "action" => $perm->permission, 
+    	    "status" => true, 
+    	    "type" => "permission",
+    	    "description" => $perm->description 
+    	  ]);
     	} else{
     	  $errors++;
     	}
@@ -304,6 +328,12 @@ class Setup extends BaseController
       $id = $this->authorize->createGroup($group->role, $group->description);
     	if($id){
     	  $userGroups[$key]->status = true;
+    	  model("Setup")->insert([
+    	    "action" => $group->role, 
+    	    "status" => true, 
+    	    "type" => "group",
+    	    "description" => $group->description 
+    	  ]);
     	} else{
     	  $errors++;
     	}
@@ -311,7 +341,12 @@ class Setup extends BaseController
     	
     if ($errors === 0) {
       $this->setup->createGroups = true;
-      $this->saveProcess();
+      model("Setup")->insert([
+    	    "action" => "createGroups", 
+    	    "status" => true, 
+    	    "type" => "core",
+    	    "description" => "core function"
+    	  ]);
       return true;
     }
     $_SESSION['setup_create_groups'] = $userGroups;
@@ -364,7 +399,12 @@ class Setup extends BaseController
 		}
 		
 		$this->setup->isAdminCreated = true;
-		$this->saveProcess();
+		model("Setup")->insert([
+    	    "action" => "isAdminCreated", 
+    	    "status" => true, 
+    	    "type" => "core",
+    	    "description" => "core function"
+    	  ]);
 		// Success!
 		return $this->response->setJson(['success' => lang('Auth.registerSuccess'), 'redirect' => route_to('login')]);
 	}

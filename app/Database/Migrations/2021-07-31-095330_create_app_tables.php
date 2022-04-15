@@ -5,7 +5,21 @@ use CodeIgniter\Database\Migration;
 class CreateAppTables extends Migration
 {
     public function up()
-    {
+    {  
+      
+        $this->forge->addField([
+          'id'               => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
+          'action'           => ['type' => 'varchar', 'constraint' => 20],
+          'type'             => ['type' => 'varchar', 'constraint' => 20, 'default' => "cor3"],
+          'status'           => ['type' => 'tinyint'],
+          'description'      => ['type' => 'text'],
+          'created_at'       => ['type' => 'datetime', 'null' => true],
+          'updated_at'       => ['type' => 'datetime', 'null' => true],
+          'deleted_at'       => ['type' => 'datetime', 'null' => true],
+        ]);
+        $this->forge->addKey("id", true);
+        $this->forge->createTable("setup", true);
+        
         /*
          * Users
          */
@@ -344,6 +358,7 @@ class CreateAppTables extends Migration
             $this->forge->dropForeignKey('expenses', 'expenses_employee_id_foreign');
         }
 
+  		$this->forge->dropTable('setup', true);
   		$this->forge->dropTable('users', true);
   		$this->forge->dropTable('auth_logins', true);
   		$this->forge->dropTable('auth_tokens', true);

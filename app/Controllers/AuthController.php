@@ -4,6 +4,7 @@ use Config\Email;
 use CodeIgniter\Controller;
 use Myth\Auth\Entities\User;
 use CodeIgniter\Database\Seeder\Faker;
+use App\Libraries\Setting;
 
 class AuthController extends Controller
 {
@@ -43,8 +44,8 @@ class AuthController extends Controller
 	 */
 	public function login()
 	{
-	  $setup = json_decode(file_get_contents(WRITEPATH."setup/setup.json"));
-		if(!$setup->isAdminCreated || !$setup->installed)
+	  $setup = (new Setting());
+		if(!$setup || !isset($setup->getCore()->isAdminCreated) || !isset($setup->getCore()->installed))
 		  return redirect()->route("setup");
 		// No need to show a login form if the user
 		// is already logged in.

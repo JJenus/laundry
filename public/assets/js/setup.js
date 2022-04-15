@@ -3,17 +3,23 @@ console.log("setup loaded")
 let app = new Vue({
   el: "#app", 
   data: {
-    progress: null, 
+    progress: {
+              installed: true, 
+              isAdminCreated: false, 
+              setupPermissions: true, 
+              createPermissions: true, 
+              createGroups: true, 
+              migrated: true
+            }, 
     installing: false, 
     errors: null, 
   },
   mounted(){
-    this.getProgress();
+    //this.getProgress();
   }, 
   methods: {
     install($url, $btn="btn-install"){
       console.log("installing...");
-
       $("#"+$btn)[0].setAttribute("data-kt-indicator", "on"); 
       this.installing = true;
       $.ajax({
@@ -23,10 +29,24 @@ let app = new Vue({
             console.log(res);
           if(res.status === "installed"){
             notify("success", "installation complete");
+            this.progress = {
+              installed: true, 
+              isAdminCreated: false, 
+              setupPermissions: true, 
+              createPermissions: true, 
+              createGroups: true, 
+              migrated: true
+            } 
+          } 
+          else if(!res.status){
+            
           } 
         },
         error: (err)=>{
           console.log(err);
+          if (!err.status) {
+            
+          }
         } 
       }).always(()=>{
         this.getProgress();
@@ -55,13 +75,12 @@ let app = new Vue({
            }, 5000);
            return 1;
           }
-          
         },
         error: (err)=>{
           console.log(err);
         } 
       }).always(()=>{
-        this.getProgress();
+        //this.getProgress();
         $("#btn-submit")[0].setAttribute("data-kt-indicator", null ); 
       });
     }, 
@@ -73,14 +92,25 @@ let app = new Vue({
         method: "GET",
         success: (res)=>{
           console.log(res);
-          this.progress = res;
+          if (res.installed === true || res.installed === false) {
+           this.progress = res;
+          }
         },
         error: (err)=>{
           console.log(err);
+          if (!err.status) {
+            this.progress = {
+              installed: false, 
+              isAdminCreated: false, 
+              setupPermissions: false, 
+              createPermissions: false, 
+              createGroups: false, 
+              migrated: false
+            };
+          }
         } 
       }).always(()=>{
         this.installing = false;
-        //$("#btn-install")[0].setAttribute("data-kt-indicator", null ); 
       });
     }, 
   }

@@ -180,17 +180,17 @@ class CustomerController extends BaseController
 	    $sdate = $this->customDate(date("Y-m-1 00:00:00"), "-4", "month");
 	    
 	    $res = $this->model
-	                 ->select("strftime('%m', created_at) as month")
+	                 ->select("MONTH(created_at) as month")
 	                 ->selectSum("total_cost")
 	                 ->where("created_at >=", $sdate)
-	                 ->groupBy("strftime('%m', created_at)")
+	                 ->groupBy("MONTH(created_at)")
 	                 ->orderBy("created_at")
 	                 ->findAll();
 	    $expenses = (model("ExpensesModel"))
-	                 ->select("strftime('%m', created_at) as month")
+	                 ->select("MONTH(created_at) as month")
 	                 ->selectSum("cost")
 	                 ->where("created_at >=", $sdate)
-	                 ->groupBy("strftime('%m', created_at)")
+	                 ->groupBy("MONTH(created_at)")
 	                 ->orderBy("created_at")
 	                 ->findAll();
       foreach ($res as $key => $value) {

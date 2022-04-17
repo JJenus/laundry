@@ -26,7 +26,7 @@ class Customer extends Entity
 
       if (empty($this->attributes["clothes"]))
       {
-          $this->attributes["clothes"] = (new clothesModel())->getClothesForCustomer($this->realId());
+          $this->attributes["clothes"] = (new clothesModel())->getClothesForCustomer($this->id);
       }
       
       return $this->attributes["clothes"];
@@ -57,17 +57,7 @@ class Customer extends Entity
   /**
    *  always set the unmasked id
   */
-  public function getId(){
-    if (empty($this->attributes["id"]))
-      {
-        throw new \RuntimeException('Customer ID not set.');
-      }
-    if (gettype($this->attributes["id"]) === "string") {
-      return  (new Encryptor())->decode($this->attributes["id"]);
-    } else{
-      return  (new Encryptor())->encode($this->attributes["id"]);
-    }
-  }
+  
   
   public function realId(){
     if(gettype($this->attributes["id"]) === "string")

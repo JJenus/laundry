@@ -41,9 +41,26 @@ class CustomerModel extends Model
 	protected $validationMessages   = [];
 	protected $skipValidation       = false;
 	protected $cleanValidationRules = true;
+	public $afterFind            = ["maskId"];
 
 	// Callbacks
 	protected $allowCallbacks       = true;
+	
+	protected function maskId(array $data){
+    if(gettype($data["data"]) === "array"){
+      if (! isset($data['data'][0]->id)) return $data;
+      foreach($data["data"] as $key => $value ){
+        $data['data'][$key]->init();
+        $data['data'][$key]->id = (new Encryptor())->encode($data['data'][$key]->id);
+      }
+    }else {
+      if (! isset($data['data']->id)) return $data;
+      $data["data"]->init();
+      $data["data"]->id = (new Encryptor())->encode($data["data"]->id);
+    }
+    return $data;
+  }
+
 	
 	public function getCustomer($id){
 	  $customer =  $this->find($id);
@@ -67,9 +84,9 @@ class CustomerModel extends Model
 	              ->orderBy('id', 'ASC')
 	              ->findAll($limit, $offset);
 	              
-	  foreach ($customers as $key => $customer){
+	  /*foreach ($customers as $key => $customer){
 	    $customers[$key]->getClothes();
-	  }
+	  }*/
 	  
 	  return $customers; 
 	}

@@ -44,15 +44,16 @@ class CustomerController extends BaseController
 		$customer["created_by"] = $this->authenticate->user()->id;
 		$customer["status"] = "pending";
 		
-		if(!$this->model->save($customer)){
+		if(!$this->model->insert($customer)){
 		  return $this->response->setJson($this->model->errors());
 		}
-		$customer_id = $this->model->insertID();
+		$customer_id = $this->model->insertID;
 	
 		$clothesModel = model("ClothesModel");
 		$clothes = $this->request->getPost("clothes");
 		foreach($clothes as $key => $clothe){
-		  $clothes[$key]["customer_id"] = $this->authenticate->user()->id;
+		  $clothes[$key]["created_by"] = $this->authenticate->user()->id;
+		  $clothes[$key]["customer_id"] = $customer_id;
 		  $clothes[$key]["status"] = "pending";
 		  for ($i = 0; $i < $clothe["quantity"]; $i++) {
 		    $clothes[$key]["actions"] = "wash, iron";
@@ -66,14 +67,14 @@ class CustomerController extends BaseController
 		     } 
 		  }
 		}
-		
+		$cs = $this->model->find($customer_id);
 		return $this->response->setJson(
 		  [
 		    "status" => "ok", 
-		    "data" => $this->model->getCustomer($customer_id)
+		    "data" => $cs
 		  ] 
 		);
-		return $this->response->setJson($clothes);
+		#return $this->response->setJson($clothes);
 	}
 	
 	public function dispense($customer_id){

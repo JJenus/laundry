@@ -16,7 +16,7 @@ class Users extends Seeder
 		$this->setup = json_decode(file_get_contents(WRITEPATH."setup/setup.json"));
 	  $this->setupAuthClasses(); 
 	  $this->adminCount = 2; 
-  	$count = random_int(7, 20);
+  	$count = random_int(8, 10);
   	$this->log("$count users to be created. @".date("Y-m-d h:i:s"));
 		$userModel = model("UserModel");
   	for ($i = 0; $i < $count; $i++) {

@@ -35,11 +35,11 @@ class Clothes extends Seeder
 	
 	private function generateClothes(){
 	  $dateNow = date("Y-m-d H:i:s");
-	  for($day = 10; $day >= 0; $day--){
+	  for($day = 8; $day >= 0; $day--){
 	    $selectable_types = ["manager", "receptionist"];
 	    $user_type = $selectable_types[random_int(0,1)];
-	    
-	    $rindex = random_int(0, count($this->staffs[$user_type])-1);
+	    $CT = count($this->staffs[$user_type])-1;
+	    $rindex = random_int(0, $CT);
 	    
 	    $user = $this->staffs[$user_type][$rindex];
 	    
@@ -51,20 +51,20 @@ class Clothes extends Seeder
         #$this->log("creating customers @".date("Y-m-d h:i:s"));
            $customer_id = $this->createCustomer($user->id, $custom_date);
            $status = ["pending", "washed", "ironed", "ready", "dispensed"];
-           
+           $cct = count($this->clotheCategories)-1;
   	      if($customer_id !== false){
   	        $clotheCount = random_int(2,5); 
   	        $this->log("$clotheCount clothes to be created. @".date("Y-m-d h:i:s"));
       		  for ($k = 0; $k < $clotheCount; $k++) {
       		    $clothes = $this->model;
-      		    $tIndex = random_int(0,(count($this->clotheCategories)-1));
+      		    $tIndex = random_int(0,$cct);
       		    $type = $this->clotheCategories[$tIndex]->id;
-      		    
+      		    $cnt = count($status)-1;
       		    $clothe = [
       		      "customer_id" => $customer_id, 
       		      "type" => $type, 
       		      "actions" => "wash, iron", 
-      		      "status" => $status[random_int(0,count($status)-1)], 
+      		      "status" => $status[random_int(0,$cnt)], 
       		      "created_at" => $custom_date, 
       		      "updated_at" => $custom_date
       		    ];
@@ -73,7 +73,7 @@ class Clothes extends Seeder
       		    if (!$clothes->save($clothe)) {
       		      $this->log($clothes->errors());
       		    }else{
-      		      $insertID = $clothes->insertID();
+      		      $insertID = $clothes->insertID;
       		      
       		      if ($clothe["status"] === "dispensed") {
       		        $this->wash($insertID);
@@ -238,8 +238,9 @@ class Clothes extends Seeder
 	 # $clothe_id = $this->getId($clothe_id);
 	  $days = random_int(3,6);
 	  $date = $this->customDate($this->custom_date, "+$days");
+	  $xxct = count($this->staffs["receptionist"])-1;
 	  $data = [
-	      "dispensed_by" => $this->staffs["receptionist"][random_int(0,count($this->staffs["receptionist"])-1)]->id, 
+	      "dispensed_by" => $this->staffs["receptionist"][random_int(0,$xxct)]->id, 
 	      "status" => "dispensed", 
 	      "updated_at" => $date, 
 	   ];
@@ -260,8 +261,9 @@ class Clothes extends Seeder
 	  */
 	  $days = random_int(0,1);
 	  $date = $this->customDate($this->custom_date, "+$days");
+	  $wct = count($this->staffs["washer"])-1;
 	  $data = [
-	      "washer" => $this->staffs["washer"][random_int(0,count($this->staffs["washer"])-1)]->id, 
+	      "washer" => $this->staffs["washer"][random_int(0,$wct)]->id, 
 	      "status" => "washed", 
 	      "updated_at" => $date, 
 	   ];
@@ -278,8 +280,9 @@ class Clothes extends Seeder
 	  #$clothe_id = $this->getId($clothe_id);
 	  $days = random_int(2,3);
 	  $date = $this->customDate($this->custom_date, "+$days");
+	  $ct = count($this->staffs["ironer"])-1;
 	  $data = [
-	      "ironer" => $this->staffs["ironer"][random_int(0,count($this->staffs["ironer"])-1)]->id, 
+	      "ironer" => $this->staffs["ironer"][random_int(0,$ct)]->id, 
 	      "status" => "ironed", 
 	      "updated_at" => $date, 
 	   ];
@@ -297,8 +300,9 @@ class Clothes extends Seeder
 	  $selected = $opt[random_int(0,1)]; 
 	  $days = random_int(2,3);
 	  $date = $this->customDate($this->custom_date, "+$days");
+	  $count = count($this->staffs[$selected]) -1;
 	  $data = [
-	      "confirmed_by" => $this->staffs[$selected][random_int(0,count($this->staffs[$selected])-1)]->id, 
+	      "confirmed_by" => $this->staffs[$selected][random_int(0,$count)]->id, 
 	      "status" => "ready", 
 	      "updated_at" => $date, 
 	   ];
@@ -341,7 +345,7 @@ class Clothes extends Seeder
 	  $acc_type = $balance > 0 ? "debt":"credit";
 	 
 	  $number = static::faker()->phoneNumber;
-	  
+	  $cout = count($type)-1;
 	  $customer = [
 	      "created_by" => $createdBy, 
 	      "status" => "pending", 
@@ -350,7 +354,7 @@ class Clothes extends Seeder
 	      "amount_paid" => $amountPaid, 
 	      $acc_type => $balance < 0 ? $balance*-1:$balance,
 	      "name" => static::faker(['it_IT', 'en_US', 'de_DE'])->name, 
-	      "type" => $type[random_int(0, count($type)-1)], 
+	      "type" => $type[random_int(0, $cout)], 
 	      "created_at" => $date, 
 	      "updated_at" => $date, 
 	   ];
@@ -365,7 +369,7 @@ class Clothes extends Seeder
 	   }
 	   $this->log("customer created @".date("Y-m-d h:i:s"));
 	   $this->customer = $customer;
-	   return $customers->insertID();
+	   return $customers->insertID;
 	}
 	
 	public function customDate($date, $days){

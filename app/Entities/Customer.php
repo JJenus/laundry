@@ -69,10 +69,6 @@ class Customer extends Entity
     }
   }
   
-  public function setId($id){
-    $this->attributes["id"] = $id;
-  } 
-  
   public function realId(){
     if(gettype($this->attributes["id"]) === "string")
       return (new Encryptor())->decode($this->attributes["id"]);

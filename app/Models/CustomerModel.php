@@ -19,7 +19,8 @@ class CustomerModel extends Model
 	protected $allowedFields        = [
 	    "created_by", "name", "type", 
 	    "status", "amount_paid", "total_cost", 
-	    "credit", "debt", "phone_number"
+	    "credit", "debt", "phone_number", 
+	    "created_by"
 	  ];
 
 	// Dates

@@ -50,11 +50,11 @@ class Database extends Config
 		'port'     => 3306,
 	];
 	 	public $default = [
-  	 	'DSN'      => 'MySQLi://b61ee64b7dd60f:3931a3f1@us-cdbr-east-05.cleardb.net/heroku_54b6df312727074?reconnect=true',
-      'hostname' => 'us-cdbr-east-05.cleardb.com',
-      'username' => 'be63e36236dbfe',
-      'password' => '6716501f',
-      'database' => 'heroku_d5d9e088a344ba9',
+  	 	'DSN'      => 'MySQLi://jjenus:adrian10jet@mysql-jjenus.alwaysdata.net/jjenus_laundry_db?reconnect=true',
+      'hostname' => 'mysql-jjenus.alwaysdata.net',
+      'username' => 'jjenus',
+      'password' => 'adrian10jet',
+      'database' => 'jjenus_laundry_db',
       'DBDriver' => 'MySQLi',
       'DBPrefix' => '',
       'pConnect' => TRUE,
@@ -69,11 +69,11 @@ class Database extends Config
     ];
 	 */
 	 	public $default = [
-  	 	'DSN'      => 'MySQLi://jjenus:adrian10jet@mysql-jjenus.alwaysdata.net/jjenus_laundry_db?reconnect=true',
-      'hostname' => 'mysql-jjenus.alwaysdata.net',
-      'username' => 'jjenus',
-      'password' => 'adrian10jet',
-      'database' => 'jjenus_laundry_db',
+  	 	'DSN'      => 'MySQLi://b61ee64b7dd60f:3931a3f1@us-cdbr-east-05.cleardb.net/heroku_54b6df312727074?reconnect=true',
+      'hostname' => 'us-cdbr-east-05.cleardb.com',
+      'username' => 'be63e36236dbfe',
+      'password' => '6716501f',
+      'database' => 'heroku_d5d9e088a344ba9',
       'DBDriver' => 'MySQLi',
       'DBPrefix' => '',
       'pConnect' => TRUE,
